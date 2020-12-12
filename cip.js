@@ -7,7 +7,7 @@ let $throttle = (callback, time) => {
 	if (throttleRun) {
 		throttleRun = false;
 		callback();
-		setTimeout(function() {
+		setTimeout(function () {
 			throttleRun = true;
 		}, time);
 	}
@@ -37,7 +37,8 @@ let $ajax = (byteRange, callback) => {
 	xhr.send();
 };
 let hash = document.getElementsByName("doi")[0].value;
-let url = `http://www.cipread.com/reader/viewer.ashx?id=${hash}&typ=1`;
+let typ = document.getElementsByName("typ")[0].value;
+let url = `http://www.cipread.com/reader/viewer.ashx?id=${hash}&typ=${typ}`;
 $ajax("0-8192", (range) => {
 	console.log("获取文件大小成功", range);
 	$ajax(range, (l, blob) => {
